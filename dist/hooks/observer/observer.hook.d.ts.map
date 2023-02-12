@@ -1,0 +1,1 @@
+{"version":3,"file":"observer.hook.d.ts","sourceRoot":"","sources":["../../../src/hooks/observer/observer.hook.ts"],"names":[],"mappings":"AACA,OAAO,EACL,YAAY,EACZ,uBAAuB,EACvB,uBAAuB,EACxB,MAAM,YAAY,CAAC;AAEpB,MAAM,CAAC,OAAO,UAAU,WAAW,CAAC,CAAC,EAAE,CAAC,EACtC,OAAO,EAAE,uBAAuB,CAAC,CAAC,EAAE,CAAC,CAAC,EACtC,IAAI,EAAE,YAAY,CAAC,CAAC,CAAC,GACpB,uBAAuB,CAAC,CAAC,CAAC,CAW5B"}
