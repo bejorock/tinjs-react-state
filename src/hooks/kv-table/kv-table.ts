@@ -1,4 +1,5 @@
 export declare type KvTable<K, V> = {
+  records: Array<V>;
   first(): V | undefined;
   last(): V | undefined;
   upsert(item: V): void;

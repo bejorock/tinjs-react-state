@@ -49,6 +49,7 @@ export default function useKvTable<K, V extends KvRecord>(
   const last = () => internalArray?.[internalArray?.length - 1];
 
   return {
+    records: internalArray!,
     first,
     last,
     upsert: upsertThenSave,
