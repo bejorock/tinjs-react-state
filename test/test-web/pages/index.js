@@ -3,6 +3,7 @@ import { useReducer, useState } from "react";
 import styles from "../styles/Home.module.css";
 import {
   useKvTable,
+  useObserver,
   usePersistentReducer,
   usePersistentState,
 } from "@tinqjs/tinjs-react-state";
@@ -219,14 +220,33 @@ function KvTableExample() {
 
 function ObserverExample() {
   const [lazyState, setLazyState] = useState();
+  const { emitter, isLoading } = useObserver(createSamplePromise, {
+    next(item) {
+      setLazyState(item);
+    },
+
+    error(err) {
+      alert(err.message);
+    },
+  });
 
   return (
     <div style={container}>
       <div>Observer, </div>
       <div>Value : {lazyState}</div>
       <div>
-        <button>Load Data</button>
+        {isLoading ? (
+          "Wait..."
+        ) : (
+          <button type="button" onClick={() => emitter(Date.now())}>
+            Load Data
+          </button>
+        )}
       </div>
     </div>
   );
+}
+
+function createSamplePromise(input) {
+  return new Promise((resolve) => setTimeout(() => resolve(input), 3000));
 }
