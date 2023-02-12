@@ -1,14 +1,18 @@
 {
   "name": "@tinqjs/tinjs-react-state",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/typings/index.d.ts",
   "license": "MIT",
   "files": [
     "dist/**",
     "package.json"
   ],
   "scripts": {
-    "build": "tsc"
+    "build:cjs": "tsc --module commonjs --target esnext --outDir dist/cjs",
+    "build:esm": "tsc --module es2015 --target esnext --outDir dist/esm",
+    "build:typings": "tsc --declaration true --emitDeclarationOnly true --outDir dist/typings"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
