@@ -27,6 +27,7 @@ export default function usePersistentState<T>(
   useEffect(() => {
     if (options?.noCache) return;
     if (!state) return;
+    if (state === options?.initialValue) return;
 
     const stateStr = JSON.stringify(state);
     storage.setItem(stateId, stateStr);
