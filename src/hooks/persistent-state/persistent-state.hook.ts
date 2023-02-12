@@ -16,7 +16,7 @@ export default function usePersistentState<T>(
     if (options?.noCache) return;
 
     const value = storage.getItem(stateId);
-    console.log("load from local storage", value);
+    // console.log("load from local storage", value);
 
     if (!value) return;
 
@@ -31,7 +31,7 @@ export default function usePersistentState<T>(
 
     const stateStr = JSON.stringify(state);
     storage.setItem(stateId, stateStr);
-    console.log("save to local storage", stateStr);
+    // console.log("save to local storage", stateStr);
   }, [state]);
 
   return [state, setState];
