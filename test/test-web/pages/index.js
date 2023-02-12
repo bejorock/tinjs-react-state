@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import styles from "../styles/Home.module.css";
 import {
   useKvTable,
@@ -34,6 +34,8 @@ export default function Home() {
       <TemporaryStateExample />
       <PersistentStateExample />
       <PersistentReducerExample />
+      <KvTableExample />
+      <ObserverExample />
     </div>
   );
 }
@@ -113,13 +115,118 @@ function PersistentReducerExample() {
 }
 
 function KvTableExample() {
-  const {} = useKvTable("kv_table", "id", {
-    initialValues: [],
+  const reducer = (oldState, action) => ({ ...oldState, ...action.payload });
+  const [state, dispatch] = useReducer(reducer, {
+    name: null,
+    age: null,
+    role: null,
   });
+  const [text, setText] = useState();
+
+  const { records, first, last, upsert, merge, remove } = useKvTable(
+    "kv_table",
+    "name",
+    {
+      initialValues: [],
+    }
+  );
+
+  const handleUpsert = () => upsert(state);
+  const handleMerge = () => {
+    if (!text) return;
+
+    const tmp = [];
+    const tokens = text.split("\n");
+    for (let token of tokens) {
+      const item = token.split(",");
+
+      tmp.push({
+        name: item[0],
+        age: item[1],
+        role: item[2],
+      });
+    }
+
+    merge(tmp);
+  };
+
+  return (
+    <>
+      <div style={container}>
+        <div>KV Table Upsert, </div>
+        <div style={flex}>
+          <input
+            type="text"
+            placeholder="name"
+            onChange={(e) => dispatch({ payload: { name: e.target.value } })}
+            style={input}
+          />
+          <input
+            type="number"
+            placeholder="age"
+            onChange={(e) => dispatch({ payload: { age: e.target.value } })}
+            style={input}
+          />
+          <input
+            type="role"
+            placeholder="role"
+            onChange={(e) => dispatch({ payload: { role: e.target.value } })}
+            style={input}
+          />
+        </div>
+        <div>
+          <button type="button" onClick={() => handleUpsert()}>
+            Add Item
+          </button>
+        </div>
+      </div>
+      <div style={container}>
+        <div>KV Table merge, </div>
+        <div>
+          <textarea rows={5} onChange={(e) => setText(e.target.value)} />
+        </div>
+        <div>
+          <button type="button" onClick={() => handleMerge()}>
+            Merge Items
+          </button>
+        </div>
+      </div>
+      <div>
+        <ul>
+          {records.map((item, i) => (
+            <li key={i}>
+              {item.name}, {item.age}, {item.role}{" "}
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  remove(item.name);
+                }}
+              >
+                [X]
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        first value {first()?.name}, last value {last()?.name}
+      </div>
+    </>
+  );
+}
+
+function ObserverExample() {
+  const [lazyState, setLazyState] = useState();
 
   return (
     <div style={container}>
-      <div></div>
+      <div>Observer, </div>
+      <div>Value : {lazyState}</div>
+      <div>
+        <button>Load Data</button>
+      </div>
     </div>
   );
 }
