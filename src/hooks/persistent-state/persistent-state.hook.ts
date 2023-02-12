@@ -15,6 +15,7 @@ export default function usePersistentState<T>(
   useEffect(() => {
     if (options?.noCache) return;
 
+    console.log("load from local storage");
     const value = storage.getItem(stateId);
 
     if (!value) return;
@@ -29,6 +30,7 @@ export default function usePersistentState<T>(
 
     const stateStr = JSON.stringify(state);
     storage.setItem(stateId, stateStr);
+    console.log("save to local storage");
   }, [state]);
 
   return [state, setState];

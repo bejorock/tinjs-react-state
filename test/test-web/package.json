@@ -8,7 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tinqjs/tinjs-react-state": "^1.0.3",
+    "@tinqjs/tinjs-react-state": "^1.0.4",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0"

@@ -17,6 +17,7 @@ export default function Home() {
 }
 
 function PersistentStateExample() {
+  // const [tmpState, setTmpState] = useState("initial state");
   const [tmpState, setTmpState] = usePersistentState("persistent_example1", {
     initialValue: "initial value",
   });
@@ -28,11 +29,14 @@ function PersistentStateExample() {
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
-        gap: 3,
+        gap: "2rem",
       }}
     >
-      <div>
+      {/* <div>
         <button>Update</button>
+      </div> */}
+      <div>
+        <input type="text" onChange={(e) => setTmpState(e.target.value)} />
       </div>
       <div>data : {tmpState}</div>
     </div>
