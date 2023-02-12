@@ -13,5 +13,10 @@
   "devDependencies": {
     "@types/react": "^18.0.27",
     "react": "^18.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bejorock/tinjs-react-state.git"
+  },
+  "author": "bejorock"
 }
