@@ -1,6 +1,6 @@
 export default interface StorageService {
   getItem(key: string): string | null;
-  setItem(key: string, value: string): string;
+  setItem(key: string, value: string): void;
   removeItem(key: string): void;
   clear(): void;
 }

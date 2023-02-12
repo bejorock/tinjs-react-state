@@ -17,8 +17,9 @@ export default function Home() {
 }
 
 function PersistentStateExample() {
-  // const [tmpState, setTmpState] = us()
-  console.log(usePersistentState);
+  const [tmpState, setTmpState] = usePersistentState("persistent_example1", {
+    initialValue: "initial value",
+  });
 
   return (
     <div
@@ -27,11 +28,13 @@ function PersistentStateExample() {
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
+        gap: 3,
       }}
     >
       <div>
         <button>Update</button>
       </div>
+      <div>data : {tmpState}</div>
     </div>
   );
 }
