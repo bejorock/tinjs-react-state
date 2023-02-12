@@ -1,2 +1,2 @@
-export * from "./storage";
-export * from "./storage.browser";
+export { default as StorageService } from "./storage";
+export { default as BrowserStorageService } from "./storage.browser";

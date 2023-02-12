@@ -18,7 +18,7 @@ export default function Home() {
 
 function PersistentStateExample() {
   // const [tmpState, setTmpState] = us()
-  console.log(reactState);
+  console.log(reactState.usePersistentState);
 
   return (
     <div
