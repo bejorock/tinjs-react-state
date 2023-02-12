@@ -10,6 +10,7 @@
     "package.json"
   ],
   "scripts": {
+    "build": "yarn build:cjs && yarn build:esm && yarn build:typings",
     "build:cjs": "tsc --module commonjs --target esnext --outDir dist/cjs",
     "build:esm": "tsc --module es2015 --target esnext --outDir dist/esm",
     "build:typings": "tsc --declaration true --emitDeclarationOnly true --outDir dist/typings"

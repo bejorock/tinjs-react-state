@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
-import * as reactState from "@tinqjs/tinjs-react-state";
+import { usePersistentState } from "@tinqjs/tinjs-react-state";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
 
 function PersistentStateExample() {
   // const [tmpState, setTmpState] = us()
-  console.log(reactState.usePersistentState);
+  console.log(usePersistentState);
 
   return (
     <div
